@@ -2,11 +2,9 @@ package blackjack;
 
 public class Card {
 
-    //vars
-    private Suit suit;
-    private Rank rank;
+    private final Suit suit; // indicating variable as final, becasue they are not gonna change after construction for ever
+    private final Rank rank;
 
-    //create a card given a suit and a rank
     public Card(Suit suit, Rank rank){
         this.suit = suit;
         this.rank = rank;
