@@ -2,16 +2,12 @@ package blackjack;
 
 public abstract class Person {
 
-    private Hand hand;
-    private String name;
+    private final Hand hand; // a person's hand shouldn't be changed completely, it's not safe
+    private final String name; //it's prettier and safer
 
-    /**
-     * Create a new Person
-     */
-    public Person(){
+    public Person(String name){
         this.hand = new Hand();
-        this.name = "";
-
+        this.name = name;
     }
 
     public Hand getHand(){
@@ -23,9 +19,6 @@ public abstract class Person {
     public String getName(){
         return this.name;
     }
-    public void setName(String name){
-        this.name = name;
-    }
 
     /**
      * Prints a formatted version of the Person's hand
@@ -36,13 +29,9 @@ public abstract class Person {
     }
 
     public boolean hasBlackjack(){
-        if(this.getHand().calculatedValue() == 21){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return this.hand.calculatedValue() == 21; // boolean methods do not need if-else, this is more professional
     }
+    
     public void hit(Deck deck,Deck discard){
         //if the deck the main deck is out of crads
         if(!deck.hasCards()){
