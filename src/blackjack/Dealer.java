@@ -5,11 +5,8 @@ public class Dealer extends Person{
     /**
      * Create a new Dealer
      */
-    public Dealer(){
-
-        //Name the dealer "Dealer"
-        super.setName("Dealer");
-
+    public Dealer(String name) {
+            super(name);
     }
 
     /**

@@ -1,102 +1,102 @@
 package blackjack;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class Deck {
 
-    private ArrayList<Card> deck;
+    private final List<Card> cards = new ArrayList<>();
 
-    public Deck(){
-        deck = new ArrayList<Card>();
+    public Deck() {
     }
 
-    public Deck(boolean makeDeck){
-        deck = new ArrayList<Card>();
-        if(makeDeck){
-            //Go through all the suits
-            for(Suit suit : Suit.values()){
-                //Go through all the ranks
-                for(Rank rank : Rank.values()){
-                    //add a new card containing each iterations suit and rank
-                    deck.add(new Card(suit, rank));
+    public Deck(boolean makeDeck) {
+        if (makeDeck) {
+            for (Suit suit : Suit.values()) {
+                for (Rank rank : Rank.values()) {
+                    cards.add(new Card(suit, rank));
                 }
             }
         }
-
     }
 
-    public ArrayList<Card> getCards() {
-        return deck;
-    }
-
-    public void addCard(Card card){
-        deck.add(card);
-    }
-
-
-    public Card takeCard(){
-
-        //Take a copy of the first card from the deck
-        Card cardToTake = new Card(deck.get(0));
-        //Remove the card from the deck
-        deck.remove(0);
-        //Give the card back
-        return cardToTake;
-
-    }
-
-    public String toString(){
-        //A string to hold everything we're going to return
-        String output = "";
-
-        //for each Card "card" in the deck
-        for(Card card: deck){
-            //add the card and the escape character for a new line
-            output += card;
-            output += "\n";
-        }
-        return output;
-    }
-
-    //Shuffle the deck
-    public void shuffle(){
-        Collections.shuffle(deck, new Random());
-    }
-    // for checking the deck whther it has any cards( for hitting method to person)
-    public boolean hasCards(){
-        if (deck.size() > 0){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    /* the ability for getting empty for all the obejcts from
-    this class
-
-     */
-    public void emptyDeck(){
-        deck.clear();
-    }
-    // cards are passed as parameters which will be added back to our main deck from discarded pile
-    public void addCards(ArrayList<Card> cards){
-        deck.addAll(cards);
-    }
     /**
-     * Take all the cards from a discarded deck and place them in this deck, shuffled.
-     * Clear the old deck
-     * the parameter is the discard - the deck we're getting the cards from
+     * Returns an unmodifiable copy of the cards for safety.
      */
-    public void reloadFromDiscard(Deck discard){
-        this.addCards(discard.getCards());
+    public List<Card> getCards() {
+        return List.copyOf(cards);
+    }
+
+    /**
+     * Adds a single card to the deck.
+     */
+    public void addCard(Card card) {
+        cards.add(card);
+    }
+    
+
+    /**
+     * Adds many cards to the deck (supports List, ArrayList, any Collection).
+     */
+    public void addCards(Collection<Card> newCards) {
+        cards.addAll(newCards);
+    }
+
+    /**
+     * Removes and returns the top card of the deck.
+     * No need to copy the card — Card is immutable.
+     */
+    public Card takeCard() {
+        return cards.remove(0); // removes and returns
+    }
+
+    /**
+     * Returns the number of cards left.
+     */
+    public int cardsLeft() {
+        return cards.size();
+    }
+
+    /**
+     * Whether the deck has cards left.
+     */
+    public boolean hasCards() {
+        return !cards.isEmpty();
+    }
+
+    /**
+     * Clears the deck.
+     */
+    public void emptyDeck() {
+        cards.clear();
+    }
+
+    /**
+     * Converts all discard cards into this deck, shuffles, and clears discard.
+     */
+    public void reloadFromDiscard(Deck discard) {
+        this.addCards(discard.cards);  // add raw list (same package, allowed)
         this.shuffle();
         discard.emptyDeck();
         System.out.println("Ran out of cards, creating new deck from discard pile & shuffling deck.");
     }
-    public int cardsLeft(){
-        return deck.size();
+
+    /**
+     * Shuffles the deck using a fresh Random.
+     */
+    public void shuffle() {
+        Collections.shuffle(cards, new Random());
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Card card : cards) {
+            sb.append(card).append("\n");
+        }
+        return sb.toString();
+    }
 }

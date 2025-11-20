@@ -15,6 +15,7 @@ public enum Suit {
         this.suitName = suitName;
     }
 
+    @Override
     public String toString(){
         return suitName;
     }

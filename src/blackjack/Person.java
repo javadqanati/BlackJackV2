@@ -1,4 +1,5 @@
 package blackjack;
+import utils.UI;
 
 public abstract class Person {
 
@@ -13,19 +14,9 @@ public abstract class Person {
     public Hand getHand(){
         return this.hand;
     }
-    public void setHand(Hand hand){
-        this.hand = hand;
-    }
+
     public String getName(){
         return this.name;
-    }
-
-    /**
-     * Prints a formatted version of the Person's hand
-     */
-    public void printHand(){
-        System.out.println(this.name + "'s hand looks like this:");
-        System.out.println(this.hand + " Valued at: " + this.hand.calculatedValue());
     }
 
     public boolean hasBlackjack(){
@@ -37,10 +28,10 @@ public abstract class Person {
         if(!deck.hasCards()){
             deck.reloadFromDiscard(discard);
         }
-        this.hand.takeCardFromDeck(deck);
-        System.out.println(this.name + " gets a card");
-        this.printHand();
-
+        Card drawn = deck.takeCard();   //get card from deck
+        hand.addCard(drawn);            //add card to hand
+        UI.printHitMessage(this.name);
+        UI.printHand(this);
     }
 
 

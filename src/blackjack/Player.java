@@ -8,11 +8,10 @@ public class Player extends Person {
 
     Scanner input = new Scanner(System.in);
 
-    //Create a new Player
-    public Player() {
-        super.setName("Player");
-
+    public Player(String name) {
+        super(name);
     }
+
 
     //Allow the player to make decisions
     public void makeDecision(Deck deck, Deck discard) {
@@ -56,7 +55,5 @@ public class Player extends Person {
 
         //test it
         //System.out.println("You selected: " + decision);
-
-
 }
 
