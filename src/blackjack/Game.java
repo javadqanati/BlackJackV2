@@ -25,6 +25,8 @@ public class Game {
         //Create the People
         dealer = new Dealer("Dealer");
         player = new Player("Player");
+        //Start the game
+        startGame();
     }
 
     /**
