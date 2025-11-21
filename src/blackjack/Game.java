@@ -1,45 +1,37 @@
 package blackjack;
+import person.Dealer;
+import person.Player;
+import ui.*;
 import utils.RoundManager;
-import utils.UI;
+import utils.StatsManager;
+import utils.UserManager;
 
 public class Game {
 
-    //Declare variables needed for Game class
-    private Deck deck, discarded;
-    private Dealer dealer;
-    private Player player;
+    private final Deck deck;
+    private final Deck discarded;
+    private final Dealer dealer;
+    private final Player player;
     private final RoundManager roundManager;
-    
 
-    /**
-     * Constructor for Game, creates our variables 
-     */
     public Game() {
+        UserManager.loadUsers();
+        StatsManager.loadStats();
         roundManager = new RoundManager(this);
-        UI.printWelcomeMessage();
-        //Create a new deck with 52 cards
         deck = new Deck(true);
-        //Create a new empty deck
         discarded = new Deck();
-
-        //Create the People
         dealer = new Dealer("Dealer");
         player = new Player("Player");
-        //Start the game
-        startGame();
+
+        MenuManager.initMenus(this);
+        MenuManager.showMenu("MAIN");
     }
 
-    /**
-     * starts the game
-     */
     public void startGame() {
         deck.shuffle();
         roundManager.startRound();
     }
 
-    /**
-     * Ends the game with a goodbye message
-     */
     public void endGame() {
         UI.printGoodbyeMessage();
     }
@@ -54,5 +46,9 @@ public class Game {
     }
     public Deck getDiscarded() {
         return discarded;
+    }
+
+    public RoundManager getRoundManager() {
+        return roundManager;
     }
 }

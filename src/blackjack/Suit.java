@@ -9,7 +9,7 @@ public enum Suit {
     HEART("Hearts"),
     SPADE("Spades");
 
-    String suitName;
+    private final String suitName;
 
     Suit(String suitName) {
         this.suitName = suitName;

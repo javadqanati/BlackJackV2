@@ -1,5 +1,5 @@
-package utils;
-import blackjack.Person;
+package ui;
+import person.Person;
 
 public class UI{
 
@@ -8,12 +8,14 @@ public class UI{
         System.out.println("---------------------");
     }
 
+
+
     public static void printGoodbyeMessage(){
         System.out.println("Thanks for playing Blackjack! Goodbye!");
     }
 
     public static void printHand(Person person){
-        System.out.println(person.getName() + "'s hand looks like this:");
+        System.out.println(person.getType() + "'s hand looks like this:");
         System.out.println(person.getHand() + " Valued at: " + 
         person.getHand().calculatedValue());
     }
@@ -24,5 +26,6 @@ public class UI{
 
     public static void startRound() {
         System.out.println("Round started!");
+        MenuManager.showMenu("PLAY");
     }
 }
