@@ -1,9 +1,7 @@
 package person;
-
 import blackjack.Deck;
 
 public class Player extends Person {
-
     private Plan plan = new NormalPlan();
     private String password;
     private String userName;
@@ -17,7 +15,6 @@ public class Player extends Person {
             this.hit(deck, discard);
         }
     }
-
     public void hitPlayer(Deck deck, Deck discard) {
         this.hit(deck, discard);
     }
@@ -39,5 +36,4 @@ public class Player extends Person {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
 }

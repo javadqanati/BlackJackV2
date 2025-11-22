@@ -11,7 +11,6 @@ public abstract class Menu {
     public void addOption(String name, Runnable action) {
         this.options.put(name, action);
     }
-
     public void showOptions() {
         System.out.println("=== MENU OPTIONS ===");
         int i = 1;
@@ -21,7 +20,6 @@ public abstract class Menu {
         }
         chooseOption();
     }
-
     public void chooseOption() {
         System.out.println("\nChoose an option (enter number):");
 
@@ -44,7 +42,6 @@ public abstract class Menu {
 
         System.out.println("Invalid option number.");
     }
-
     public void doAction(String name) {
         Runnable action = options.get(name);
 
@@ -55,15 +52,12 @@ public abstract class Menu {
 
         action.run();
     }
-
     public Map<String, Runnable> getOptions() {
         return options;
     }
-
     public void setOptions(Map<String, Runnable> options) {
         this.options = options;
     }
-
     public Scanner getScanner() {
         return scanner;
     }

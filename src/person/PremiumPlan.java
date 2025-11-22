@@ -12,6 +12,11 @@ public class PremiumPlan implements Plan{
     }
 
     @Override
+    public boolean isPremium() {
+        return true;
+    }
+
+    @Override
     public int getMaxGamesPerDay() {
         return 0;
     }

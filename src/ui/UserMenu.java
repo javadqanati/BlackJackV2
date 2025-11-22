@@ -9,6 +9,7 @@ public class UserMenu extends Menu{
         UserMenu.game = game;
         addOption("Start the Game", game::startGame);
         addOption("View Your Statistics", () -> MenuManager.showMenu("STATS"));
+        addOption("Go to Market", () -> MenuManager.showMenu("MARKET"));
         addOption("Back to Main Menu:", () -> MenuManager.showMenu("MAIN"));
     }
 

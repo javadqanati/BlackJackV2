@@ -11,6 +11,12 @@ public class NormalPlan implements Plan{
         return 0;
     }
 
+
+    @Override
+    public boolean isPremium() {
+        return false;
+    }
+
     @Override
     public String toString() {
         return "Normal Plan";
